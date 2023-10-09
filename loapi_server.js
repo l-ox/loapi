@@ -1,9 +1,9 @@
 const url = require('url');
 const http = require("http");
-const host = '10.1.0.4';
+const host = '1.1.1.1';
 const port = 80;
 const { exec } = require("child_process");
-command = "ping 8.8.8.8";
+command = "echo test";
 var keys = ["5jEByz2Igr", "m9qd1PvdW8"];
 
 const requestListener = function (req, res) {

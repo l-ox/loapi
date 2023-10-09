@@ -23,20 +23,24 @@ LOAPI (pronounced 'Lope-ey' and short for 'Luke Oxley's Application Programming 
 
    `sudo npm install http`
 
-4) Create LOAPI server run file, give it executable permissions, and start it running.
+4) Create LOAPI server run file and start it running.
 
    `sudo vi loapi_server.js` --> input loapi_server code from this repo, remembering to change the `host`, `port` and `command` variables as well as the `keys` array. Note, the `host` and `port` are the local IP and port the server will bind to, the `command` is the bash command that will be run locally when `action1` is called, and the `keys` array is a list of permitted API keys for authentication purposes.
-   
-   `sudo chmod +x loapi_server.js`
    
    `sudo node loapi_server.js`
 
 5) Test & Play
 
     - Make a call to your server with `http://<ip>:<port>/loapi?api_key=<key>&call=action1`.
-
     - If the API key was correct, you should receive a "200 OK - Authenticated Successfully" message in JSON, and, if the call was recognised, confirmation that triggering it was a success.
     - If the API key was incorrect and authentication fails you will receive a "401 Unauthorised", again, in JSON. Likewise, if the call is not recognised, the status of the call will not return back as a success.
+    - Additionally, if you want to add more actions and thus more backend commands/scripts that can be triggered to run via this interface, simply duplicate the following section of code directly below itself and change the condition and actions as required:
+`
+if (call.includes("action1")) {
+   call_status = "action1 success";
+   exec(command);
+}
+`
    
 ⚠️ WARNING: Not for production use due to limited security measures. Be sure to implement TLS at a minimum.
 

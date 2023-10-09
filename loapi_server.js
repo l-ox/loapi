@@ -17,18 +17,18 @@ const requestListener = function (req, res) {
                 res.setHeader("Content-Type", "application/json");
                 res.writeHead(200);
                 if (call.includes("action1")) {
-                        call_status = "action1 success";
+                        response = "success";
                         exec(command);
                 }
                 else {
-                        call_status = "400 Bad Request";
+                        response = "400 Bad Request";
                 }
-        res.end(`{"message": "200 OK - Authenticated Successfully", "call_status": "` + call_status + `"}`);
+        res.end(`{"message": "200 OK - Authenticated Successfully", "response": "` + response + `"}`);
         }
         else {
                 res.setHeader("Content-Type", "application/json");
                 res.writeHead(401);
-                res.end(`{"message": "401 Unauthorised", "call_status": "N/A"}`);
+                res.end(`{"message": "401 Unauthorised"}`);
         }
 };
 

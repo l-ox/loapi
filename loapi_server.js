@@ -11,7 +11,7 @@ var response = "";
 
 const requestListener = function (req, res) {
 	path = req.url
-	uri = ("http://" + host + ":8000" + path);
+	uri = ("http://" + host + ":" + port + path);
 	uri = new URL(uri);
 	const search_params = uri.searchParams;
 	const key = search_params.get('api_key');

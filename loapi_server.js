@@ -1,6 +1,6 @@
 const url = require('url');
 const http = require("http");
-const host = '10.1.0.4';
+const host = '1.1.1.1';
 const port = 8000;
 const { exec } = require("child_process");
 command = "echo test";

@@ -1,13 +1,9 @@
 const url = require('url');
 const http = require("http");
-const host = '1.1.1.1';
-const port = 8000;
+const host = '10.1.0.4';
+const port = 80;
 const { exec } = require("child_process");
-command = "echo test";
 var keys = ["5jEByz2Igr", "m9qd1PvdW8"];
-var request_body = "";
-var mem1 = "";
-var response = "";
 
 const requestListener = function (req, res) {
 	path = req.url
@@ -22,15 +18,12 @@ const requestListener = function (req, res) {
 		res.writeHead(200);
 		if (request_type.includes("put")) {
 			status = "success";
-			request_body = request;
-			mem1 = request;
-			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request_body + `", "response": "` + response + `"}`);
+			exec("echo " + request + " >> /home/luke/projects/loapi/request_queue")
+			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request + `", "response": "` + response + `"}`);
 		}
 		if (request_type.includes("get")) {
 			status = "success";
-			request_body = request;
-			response = mem1;
-			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request_body + `", "response": "` + response + `"}`);
+			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request + `", "response": "` + response + `"}`);
 		}
 		else {
 			status = "400 Bad Request";

@@ -6,7 +6,7 @@ const { exec } = require("child_process");
 var keys = ["5jEByz2Igr", "m9qd1PvdW8"];
 
 const requestListener = function (req, res) {
-	path = req.url
+	path = req.url;
 	uri = ("http://" + host + ":" + port + path);
 	uri = new URL(uri);
 	const search_params = uri.searchParams;
@@ -18,11 +18,13 @@ const requestListener = function (req, res) {
 		res.writeHead(200);
 		if (request_type.includes("put")) {
 			status = "success";
-			exec("echo " + request + " >> /home/luke/projects/loapi/request_queue")
+			response = status;
+			exec("echo " + request + " >> /home/luke/projects/loapi/request_queue");
 			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request + `", "response": "` + response + `"}`);
 		}
 		if (request_type.includes("get")) {
 			status = "success";
+			response = status;
 			res.end(`{"message": "200 OK - Authenticated Successfully", "status": "` + status + `", "request_type": "` + request_type + `", "request_body": "` + request + `", "response": "` + response + `"}`);
 		}
 		else {
